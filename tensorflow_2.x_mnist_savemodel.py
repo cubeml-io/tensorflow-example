@@ -80,9 +80,9 @@ def setup_env(args):
     # 1. https://github.com/tensorflow/docs/blob/r2.3/site/en/tutorials/distribute/multi_worker_with_keras.ipynb
     # 2. https://git.openi.org.cn/OpenI/octopus-doc/src/branch/master/docs/manual/train.md
     if args.strategy == 'multi_worker_mirrored':
-        index = int(os.environ['PCL_TASK_INDEX'])
+        index = int(os.environ['VC_TASK_INDEX'])
         # task_name = os.environ["VC_TASK_NAME"].upper()
-        ips = os.environ[f'PCL_TASK_HOSTS']
+        ips = os.environ[f'VC_TASK_HOSTS']
         ips = ips.split(',')
         global num_workers
         num_workers = len(ips)
@@ -161,12 +161,12 @@ def main():
     # save model
     if args.output_dir:
         # 为了验证多机分布式训练时，真实的跑在2个节点上，让在每个节点都生成模型文件
-        # if 'VK_TASK_INDEX' in os.environ and int(os.environ['VK_TASK_INDEX']) > 0:
+        # if 'VC_TASK_INDEX' in os.environ and int(os.environ['VC_TASK_INDEX']) > 0:
         #     return
         # current_time = datetime.fromtimestamp(time.time()).strftime('%Y%m%d-%H%M%S-%f')
         # output_dir = os.path.join(
         #    args.output_dir,
-        #    f"VK_TASK_INDEX_{os.environ['VK_TASK_INDEX']}_{current_time}"
+        #    f"VC_TASK_INDEX_{os.environ['VC_TASK_INDEX']}_{current_time}"
         # )
         dir = args.output_dir + "/1/model.savedmodel"
         os.makedirs(dir, exist_ok=True)
