@@ -97,9 +97,9 @@ def setup_env(args):
 
 def setup_config():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data-dir', default="./../../dataset/MNIST/raw")
-    parser.add_argument('--output-dir', default="./../../model/tensorflow_mnist_savemodel")
-    parser.add_argument('--epochs', default=5)
+    parser.add_argument('--data-dir', default="./../dataset/MNIST/raw")
+    parser.add_argument('--output-dir', default="./../model/tensorflow_mnist_savemodel")
+    parser.add_argument('--epochs', default=500)
     parser.add_argument(
         '--strategy',
         default='off',
